@@ -1,0 +1,31 @@
+# Internal agent instructions and planning records
+CLAUDE.md
+.claude/
+forge.status.json
+
+# Personal knowledge-base material (retain only the README and index skeletons)
+brain/CHANGELOG.md
+brain/architettura/backend.md
+brain/architettura/decisioni.md
+brain/architettura/docker.md
+brain/architettura/frontend.md
+brain/conoscenza/aeroporto-perugia-destinazioni.md
+brain/conoscenza/cli-ricerca-trasporti.md
+brain/conoscenza/concetto-prenotare-voli.md
+brain/conoscenza/concetto-trasporti-locali.md
+brain/conoscenza/fermate-autobus-nodi.md
+brain/conoscenza/transportfinder-scope.md
+brain/conoscenza/tratta-perugia-udine.md
+brain/guida-utente/cosa-fa.md
+brain/guida-utente/glossario.md
+brain/guida-utente/tutorial.md
+brain/operazioni/problemi-noti.md
+brain/operazioni/runbook.md
+brain/llms.txt
+brain/showcase.md
+
+# Private instance deployment configuration
+deploy/Caddyfile
+deploy/docker-compose.yml
+deploy/docker-compose.prod.yml
+deploy/docker-compose.db.yml

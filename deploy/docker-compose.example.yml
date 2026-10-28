@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: transportfinder
+      POSTGRES_USER: transportfinder
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U transportfinder -d transportfinder"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - transportfinder_db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deploy/backend.Dockerfile
+      target: prod
+    environment:
+      DATABASE_URL: postgresql+asyncpg://transportfinder:${DB_PASSWORD}@db:5432/transportfinder
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "10022:10022"
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/frontend.Dockerfile
+      target: prod
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  transportfinder_db_data:
